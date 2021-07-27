@@ -1,152 +1,808 @@
 import {
+    Appear,
+    FullScreenCode,
+    Head
+} from 'mdx-deck'
+import {
   CodeSurfer,
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import LocalImage from './LocalImage.js'
+import { nightOwl } from "@code-surfer/themes";
+import customTheme from './theme.js'
 
-export const theme = vsDark;
+export const theme = customTheme;
 
-# Hello 👋
+<Head>
+  <title>Easy Accessibility with Angular, React, and Vue</title>
+</Head>
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+# Easy Accessibility with Angular, React, and Vue
 
 ---
 
-<CodeSurfer>
+# Poll
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+<Notes>
+* anyone have a disability?
+* anyone have a disability that affects using the web?
+* anyone test for accessibility in their apps?
+* anyone work for a public agency?
+</Notes>
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
+---
 
-  if (!sit || ut < 1) {
-    return [];
-  }
+# Me
 
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
+<ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+  <Appear>
+    <li>Senior Developer @ <a href="https://deque.com/">Deque Systems</a></li>
+    <li>Collector of hobbies and opinions</li>
+    <li><a href="https://twitter.com/NathanLoding">@NathanLoding</a>*</li>
+  </Appear>
+</ul>  
 
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
+---
 
-  return aliqua;
-}
-```
+<LocalImage src="Deque_Logo_HeroBlue.png" />
 
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+---
 
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
+<LocalImage src="Deque_DequeU_Logo_HeroBlue.png" />
+<LocalImage src="Deque_Axe_Logo_HeroBlue.png" />
 
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
+---
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
+# What is "A11Y"
 
-  if (!sit || ut < 1) {
-    return [];
-  }
+"Accessibility" == "A" + 11 letters + "y"
 
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
+---
 
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
+# Why is A11y important?
 
-  return aliqua;
-}
-```
+<ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+    <Appear>
+        <li>In the United States ...</li>
+        <li><strong>1 in 5</strong> Disabled</li>
+        <li><strong>8.1 Million</strong> Visually impaired</li>
+        <li><strong>2 Million</strong> Blind</li>
+        <li><strong>7.6 Million</strong> Auditory impaired</li>
+        <li><strong>2.2 Million</strong> Suffer seizures/epilepsy</li>
+        <li><strong>19.9 Million</strong> Motor impaired</li>
+    </Appear>
+</ul>        
 
-```diff 1[10:14],2[15:19],3[22:27],10:12
+---
 
+![](https://www.section508.gov/sites/default/files/508-logo.png)
+
+---
+
+<LocalImage src="beyonce_tweet.png" />
+
+---
+
+# Inaccessibility is a liability
+
+<a href="https://www.lflegal.com/2019/10/dominos-supreme-court/" style={{ color: 'white' }}>
+ Domino’s Pizza, LLC v. Robles, Guillermo
+</a>
+
+---
+
+# Accessibility === Usability
+
+Your website is <strong>not</strong> usable if it's not accessible
+
+---
+
+# This goes beyond websites
+
+- Football huddles
+- Curb cuts
+- Automatic door openers
+
+<Notes>
+  In 1894, the Gallaudet football team was playing against another deaf team.  Paul Hubbard, the quarterback didn't want to risk the other team seeing him using ASL to explain the play to his teammates, so he asked them to form a tight circle formation, now known as a huddle. Today, the huddle is used all over the world, in a wide variety of team sports, such as baseball, football, basketball, soccer, lacrosse and many other sports.
+</Notes>
+
+---
+
+# If your site isn't accessible ...
+
+---
+
+# ... it is entirely <strong>your fault</strong>
+
+---
+
+## It isn't `{{ chosen_framework }}`'s fault ...
+
+---
+
+<LocalImage src="heydon.png" />
+
+---
+
+# Common disabilities
+
+<ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+    <Appear>
+        <li><strong>Visual</strong>: color blindness, low vision, blindness</li>
+        <li><strong>Cognitive/neuro</strong>: ADHD, Autism spectrum, anxiety, seizures</li>
+        <li><strong>Auditory</strong>: hard of hearing, deaf, audio processing</li>
+        <li><strong>Physical</strong>: amputation, arthritis, paralysis</li>
+        <li><strong>Speech</strong>: muteness, dysarthia, stuttering</li>
+    </Appear>
+</ul>
+
+---
+
+# [WCAG 2.0](https://www.w3.org/TR/WCAG20/)
+
+---
+
+# POUR
+
+<ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+    <Appear>
+        <li><strong>P</strong>erceivable</li>
+        <li><strong>O</strong>perable</li>
+        <li><strong>U</strong>nderstandable</li>
+        <li><strong>R</strong>obust</li>
+    </Appear>
+</ul>
+
+---
+
+# Semantic HTML
+
+---
+
+<LocalImage src="html5demo1.jpg" />
+
+---
+
+<LocalImage src="pour_with-css.png" />
+
+---
+
+<LocalImage src="pour_wo-css.png" />
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```html
+<!-- inaccessible -->
+<button class="btn btn-primary"><i class="fa fa-trash"></i></button>
+
+<!-- accessible -->
+<button class="btn btn-primary"><i class="fa fa-trash"></i> Remove</button>
+<button class="btn btn-primary" aria-label="Remove"><i class="fa fa-trash"></i></button>
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+<CodeSurfer>
 
-<Step>
+```html
+<!-- inaccessible -->
+<img class="img-responsive" src="xyz.png" />
 
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+<!-- accessible -->
+<img class="img-responsive" alt="An image of XYZ" src="xyz.png" />
+
+<!-- don't do this! -->
+<img class="img-responsive" alt="xyz.png" src="xyz.png" />
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-```
-
-</Step>
-
-<Step>
-
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
-```
-
-</Step>
-
-</CodeSurferColumns>
+</CodeSurfer>
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+<CodeSurfer>
+
+```html
+<!-- inaccessible -->
+<div class="alert alert-danger">This is some text</div>
+
+<!-- accessible -->
+<div class="alert alert-danger"><i class="fa fa-exclamation"></i> This is some text</div>
+```
+
+</CodeSurfer>
+
+---
+
+## All of these have one thing in common
+
+---
+
+## They have <strong>nothing</strong> to do with Javascript or any framework
+
+---
+
+## Frameworks output the HTML <strong>you</strong> write
+
+---
+
+# Linting
+
+<ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+  <Appear>
+    <li><a href="https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter">axe Accessibility Linter for VS Code</a></li>
+    <li><a href="https://github.com/evcohen/eslint-plugin-jsx-a11y">eslint-plugin-jsx-a11y</a></li>
+    <li><a href="https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility">eslint-plugin-vuejs-accessibility</a></li>
+    <li><a href="https://github.com/vue-a11y/vue-axe">vue-axe</a></li>
+    <li><a href="https://github.com/angular-eslint/angular-eslint">angular-eslint</a></li>
+  </Appear>
+</ul>
+
+---
+
+<LocalImage src="eslint.png" />
+
+---
+
+<LocalImage src="eslint-editor.png" />
+
+---
+
+# Fragments
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Table = () => {
+  <table>
+    <tr>
+      <Columns />
+    </tr>
+  </table>
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx
+const Columns = () => {
+  <div>
+    <td>Hello</td>
+    <td>World</td>
+  </div>
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```html
+<table>
+  <tr>
+    <div> <!-- WUT -->
+      <td>Hello</td>
+      <td>World</td>
+    </div>
+  </tr>
+</table>
+```
+
+</CodeSurfer>
+
+---
+
+## Malformed HTML wreaks havoc with accessibility tools
+
+---
+
+# React
+
+<CodeSurfer>
+
+```jsx
+const Columns = () => {
+  <>
+    <td>Hello</td>
+    <td>World</td>
+  </>
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Vue
+
+<CodeSurfer>
+
+```html
+<!-- Columns.vue -->
+<template>
+  <td>Hello</td>
+  <td>World</td>
+</template>
+```
+
+</CodeSurfer>
+
+note: for Vue 2.x you need to use the <a href="https://www.npmjs.com/package/vue-fragment">vue-fragment</a> package
+
+---
+
+# Angular
+
+> Thank you for submitting this feature request. The team has reviewed the feature request and has decided not to move forward with it. ... Our design for components fundamentally relies on host elements being present in the DOM, and we don't believe the benefits of changing this for some components would outweigh the significant increase in complexity.
+
+<Appear>
+  <a href="https://github.com/angular/angular/issues/18877">Complain on GitHub!</a>
+</Appear>
+
+---
+
+# Page `title`
+
+When a screen reader begins reading a new page, it often starts with the page title
+
+* Helps with SEO!
+* Helps visually impaired users with screen readers
+* Helps sited users manage their tabs
+  * <small>(unless you are like me and have so many tabs open not even the favicon appears)</small>
+
+---
+
+### `document.title`
+
+<CodeSurfer>
+
+```js
+componentDidMount() {
+  document.title = 'My page title';
+}
+```
+
+</CodeSurfer>
+
+---
+
+### [react-document-title](https://www.npmjs.com/package/react-document-title)
+
+<CodeSurfer>
+
+```jsx
+const App = () => {
+  // Use "My Web App" if no child overrides this
+  <DocumentTitle title='My Web App'>
+    <SomeRouter />
+  </DocumentTitle>
+}
+
+const HomePage = () => {
+  // Use "Home" while this component is mounted
+  <DocumentTitle title='Home'>
+    <h1>Home, sweet home.</h1>
+  </DocumentTitle>
+}
+```
+
+</CodeSurfer>
+
+---
+
+### [react-helmet](https://www.npmjs.com/package/react-helmet)
+
+<CodeSurfer>
+
+```jsx
+<Parent>
+    <Helmet>
+        <title>My Title</title>
+        <meta name="description" content="Helmet application" />
+    </Helmet>
+ 
+    <Child>
+        <Helmet>
+            <title>Nested Title</title>
+            <meta name="description" content="Nested component" />
+        </Helmet>
+    </Child>
+</Parent>
+```
+
+</CodeSurfer>
+
+---
+
+### [vue-meta](https://vue-meta.nuxtjs.org/)
+
+<CodeSurfer>
+
+```js
+import VueMeta from 'vue-meta';
+Vue.use(VueMeta);
+
+// ...
+
+<template>
+  About Us Page
+</template>
+
+<script>
+  export default {
+    name: 'About',
+    metaInfo: {
+      title: 'About Us'    }
+  }
+</script>
+```
+
+</CodeSurfer>
+
+---
+
+# [Angular Title Service](https://angular.io/guide/set-document-title)
+
+<CodeSurfer>
+
+```js
+export class AppComponent {
+  public constructor(private titleService: Title) { }
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Keyboard events
+
+---
+
+# Pop Quiz!
+
+What HTML elements are `clickable`?
+
+---
+
+If using `onClick` in an element that isn't typically interacted with ...
+
+---
+
+# React
+
+<CodeSurfer>
+
+```jsx
+<!-- mouse clicks only -->
+<img onClick={() => this.props.callback()} />
+
+<!-- all clicks -->
+<img onClick={/* ... */} onKeyPress={(event) => event.key === 'Enter' && this.props.callback()} />
+```
+
+</CodeSurfer>
+
+---
+
+# Vue
+
+<CodeSurfer>
+
+```html
+<!-- mouse clicks only -->
+<img @click="alert('clicked!')" />
+
+<!-- all clicks -->
+<img @click="..." @keypress.enter="alert('clicked!')" />
+```
+
+</CodeSurfer>
+
+---
+
+# Angular
+
+<CodeSurfer>
+
+```html
+<!-- mouse clicks only -->
+<img (click)="onClick('clicked!')" />
+
+<!-- all clicks -->
+<img (click)="..." (keypress)="onKeyPress('clicked!')" />
+```
+
+</CodeSurfer>
+
+---
+
+# Focus
+
+---
+
+## Screen readers read what is in focus
+
+When a single page application navigates to a new page, the previously focused DOM content is now entirely gone.
+
+<strong>What is in focus after a route change?</strong>
+
+---
+
+<LocalImage src="focus-microinteraction-1.gif" />
+
+---
+
+<CodeSurfer>
+
+```jsx
+<div
+  ref={
+    (loadingMessage) => {
+      this.loadingMessage = loadingMessage;
+    }
+  }
+  tabIndex='-1'
+  >
+  Loading…
+</div>
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx
+componentDidMount() {
+  this.loadingMessage.focus();
+}
+```
+
+</CodeSurfer>
+
+---
+
+# React: [Reach Router](https://reach.tech/router)
+
+>Router manages the focus of your app on route transitions. There’s nothing you have to do about it, it just happens.
+
+_... but it's being merged into ..._
+
+---
+
+# React: [react-router](https://npm.im/react-router-dom)
+
+[react-router@6](https://reacttraining.com/blog/react-router-v6-pre/) will have all the good parts of Reach Router
+
+---
+
+# Vue
+
+<CodeSurfer>
+
+```js
+// App.vue
+setRouteWrapperFocus() {
+    this.$el.focus();
+},
+watch: {
+  $route: function() {
+    // 🚨 $nextTick = DOM updated, route successfully transitioned
+    this.$nextTick(function() {
+      this.setRouteWrapperFocus();
+    });
+  }
+},
+```
+
+</CodeSurfer>
+
+---
+
+# Angular
+
+<CodeSurfer>
+
+```js
+router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
+  const mainHeader = document.querySelector('#main-content-header')
+  if (mainHeader) {
+    mainHeader.focus();
+  }
+});
+```
+
+</CodeSurfer>
+
+---
+
+# BUT WAIT!
+
+<Appear>
+  <a href="https://www.gatsbyjs.com/blog/2019-07-11-user-testing-accessible-client-routing/">
+    What we learned from user testing of accessible client-side routing techniques with Fable Tech Labs
+  </a>
+</Appear>
+
+---
+
+# So what do I do then?
+
+1. Use skip links
+2. Send focus to outermost app container
+3. Ensure next focusable item is the skip link
+4. Utilize ARIA Live Regions to annouce the page change
+
+---
+
+# Live announcements
+
+When an asychronous application fetches new data, screen readers aren't notified of the new data
+
+---
+
+## [ARIA Live Regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions)
+
+---
+
+## Roll your own
+
+<CodeSurfer>
+
+```jsx
+const AriaLiveAnnouncements = ({ message }) => (
+    <div aria-live="polite" aria-atomic="true" className="visuallyhidden">
+        {message}
+    </div>
+);
+
+<AriaLiveAnnouncements message={this.state.message} />
+```
+
+</CodeSurfer>
+
+---
+
+## [react-aria-live](https://www.npmjs.com/package/react-aria-live)
+
+<CodeSurfer>
+
+```jsx
+<LiveAnnouncer>
+  <LiveMessage message={this.state.a11yMessage} aria-live="polite" />
+  <button onClick={() => {this.setState({ a11yMessage: 'Button Pressed' });}}>
+    Press me
+  </button>
+</LiveAnnouncer>
+```
+
+</CodeSurfer>
+
+---
+
+# [vue-announcer](https://github.com/vue-a11y/vue-announcer)
+
+<CodeSurfer>
+
+```js
+import VueAnnouncer from '@vue-a11y/announcer'
+import { useAnnouncer } from '@vue-a11y/announcer'
+
+createApp(App)
+  .use(VueAnnouncer)
+// ...
+
+<template>
+  <VueAnnouncer />
+  ...
+</template>
+
+// ...
+const { assertive } = useAnnouncer()
+assertive('My error notification')
+
+// or 
+
+const { polite } = useAnnouncer()
+polite('My info notification')
+```
+
+</CodeSurfer>
+
+* Vue 3 support still WIP
+
+---
+
+# Angular CDK: [LiveAnnouncer](https://material.angular.io/cdk/a11y/overview#liveannouncer)
+
+<CodeSurfer>
+
+```js
+@Component({...})
+export class MyComponent {
+
+ constructor(liveAnnouncer: LiveAnnouncer) {
+   liveAnnouncer.announce("Hey Google");
+ }
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Testing
+
+---
+
+## Nothing will replace user testing ...
+
+### ... but there are some amazing tools out there ...
+
+---
+
+## WAVE Evaluation Tool
+
+<LocalImage src="wave.png" />
+
+---
+
+## Google Lighthouse extension
+
+<LocalImage src="lighthouse.png" />
+
+---
+
+## <a href="https://tenon.io" target="_blank">Tenon.io</a>
+
+---
+
+## pa11y
+
+<LocalImage src="pa11y.png" />
+
+---
+
+## Deque aXe
+
+<LocalImage src="axe-chrome.png" />
+
+---
+
+# Quick Recap!
+
+<ul style={{ listStyle: 'none', paddingLeft: '0' }}>
+    <Appear>
+        <li><strong>It's your fault</strong> 😳</li>
+        <li>Write semantic, structured HTML</li>
+        <li>Use a linter to identify issues as you write</li>
+        <li>Use Fragments to ensure semantic HTML when composing</li>
+        <li>Update the page title</li>
+        <li>Manage application focus</li>
+        <li>Live announce async changes</li>
+        <li>Add accessibility testing to your CI/CD pipeline!</li>
+    </Appear>
+</ul>  
+
+---
+
+# Thanks for coming!

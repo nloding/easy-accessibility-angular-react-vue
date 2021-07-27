@@ -1,4 +1,5 @@
 {
+  "name": "easy-accessibility-angular-react-vue",
   "private": true,
   "version": "1.0.0",
   "scripts": {
@@ -8,7 +9,6 @@
   },
   "devDependencies": {
     "code-surfer": "3.1.0",
-    "mdx-deck": "3.0.13"
-  },
-  "name": "easy-accessibility-angular-react-vue"
+    "mdx-deck": "^4.1.1"
+  }
 }
